@@ -7,6 +7,7 @@
 	<link rel="stylesheet" href="css/bootstrap-3.3.5/css/bootstrap.min.css" />
 	<link rel="stylesheet" type="text/css" href="css/common.css"/>
     <title>炫捷科技官网</title>
+   
     <style>
 
     .caption2{
@@ -222,6 +223,9 @@
     </style>
 </head>
 <body>
+
+<div id="totop" onclick="totop()" style="background: url(img/toTop.png) center no-repeat;width: 50px;height: 50px;position: fixed;border-radius: 5px;right: 10px;bottom: 30px;box-shadow: 0px 0px 5px gainsboro;"></div>
+	
 <div class="container-fluid">
 	
 	
@@ -237,7 +241,7 @@
 				<a class="caption" href="hf.html" >
 		    			<div class="menuText">话费</div>
 				</a>
-				<a class="caption" href="#" >
+				<a class="caption" href="ll.html" >
 				    <div class="menuText">流量</div>
 				</a>
 				<a class="caption" href="#" >
@@ -485,6 +489,9 @@
 
 </div>
 	<script>
+		function totop(){
+			$("body").animate({scrollTop: '0px'}, 800);
+		}
 		
 		function bigger(o){
 			var firstDiv = $(o).children()[1];
