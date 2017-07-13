@@ -1,0 +1,1316 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>API文档</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<script type="text/javascript" src="js/jquery-2.1.4/jquery.min.js"></script>
+	<script type="text/javascript" src="css/bootstrap-3.3.5/js/bootstrap.min.js" ></script>
+	<link rel="stylesheet" href="css/bootstrap-3.3.5/css/bootstrap.min.css" />
+	<link rel="stylesheet" type="text/css" href="css/common.css"/>
+	<style>
+		
+		ul.nav-pills {
+			top: 20px;
+			position: fixed;
+		}
+
+		@media screen and (max-width: 810px) {
+			#section1, #section2, #section3, #section4, #section5,#section6{
+				margin-left: 150px;
+			}
+		}
+		
+	</style>
+</head>
+<body data-spy="scroll" data-target="#myScrollspy" data-offset="20" style="background-color: #F0F0F0;">
+
+
+	
+	<header style="z-index:10000;clear: both;padding-top: 5px;height: 65px;position: fixed;width: 100%;background: url(img/backImage1.jpg);">
+		<div>
+			<div class="col-md-2" style="padding-left: 50px;">
+				<a href="index.html"><img src="img/炫捷  logo.png" height="60px;" style="margin-left: 10px;"/></a>
+			</div>	
+			<div class="col-md-7" style="height: 60px;">
+				<a class="caption" style="text-decoration: none;" href="#" >
+		    		<div class="menuText">话费</div>
+				</a>
+				<a class="caption" style="text-decoration: none;" href="#" >
+				    <div class="menuText">流量</div>
+				</a>
+				<a class="caption" style="text-decoration: none;" href="#" >
+				    <div class="menuText">加油卡</div>
+				</a>
+				<a class="caption" style="text-decoration: none;" href="#" >
+				    <div class="menuText">游戏点卡</div>
+				</a>
+				<a class="caption" style="text-decoration: none;" href="#" >
+				    <div class="menuText">视频会员</div>
+				</a>
+				<a class="caption" style="text-decoration: none;" href="API.html" >
+				    <div class="menuText">API文档</div>
+				</a>
+				
+			</div>
+			<div class="col-md-3">
+				<a class="caption" style="text-decoration: none;" href="#" >
+				    <div class="menuText">关于我们</div>
+				</a>
+				<a class="caption" style="text-decoration: none;" href="#" >
+				    <div class="menuText">联系我们</div>
+				</a>
+			</div>
+		</div>
+	</header>
+
+
+<div class="container">
+	<div class="row">
+		
+		<div class="col-sm-3" id="myScrollspy">
+			<ul class="nav nav-pills nav-stacked" style="top: 100px;">
+				<li><a href="#section1">一、订单提交接口</a></li>
+				<li><a href="#section2">二、订单状态查询接口</a></li>
+				<li><a href="#section3">三、订单状态推送（回调）</a></li>
+				<li><a href="#section4">四、查询账户余额接口</a></li>
+				<li><a href="#section5">五、号码信息查询接口</a></li>
+				<li><a href="#section6">六、附录</a></li>
+			</ul>	
+		</div>
+		
+		<div class="col-sm-9">
+			<div id="section1" style="padding-top: 80px;">   
+				<h2>一、订单提交接口</h2>
+
+				<br>
+
+				<p>
+					<h4>
+						1、调用方式  (HTTP – POST) <br>				
+					</h4>
+					<i>
+						话费订单提交地址：http://host:port/IXJCWICommitOrder/XJCommitOrderHF.aspx<br>
+						流量订单提交地址：http://host:port/IXJCWICommitOrder/XJCommitOrderLL.aspx
+					</i>
+				</p>
+
+				<br>
+
+				<p>
+					<h4>2、请求参数:</h4>
+					<table class="table table-striped">
+						
+						<thead>
+							<tr>
+								<th>参数名称</th>
+								<th>类型</th>
+								<th>必填</th>
+								<th>备注</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr>
+								<td>szAgentId</td>
+								<td>String(16)</td>
+								<td>是</td>
+								<td>商户账号(需联系商务生成)</td>
+							</tr>
+							<tr>
+								<td>szOrderId</td>
+								<td>String(32)</td>
+								<td>是</td>
+								<td>商户平台自行生成的订单编号，<br>保证唯一性(由字母或数字组成)</td>
+							</tr>
+							<tr>
+								<td>szPhoneNum</td>
+								<td>String(32)</td>
+								<td>是</td>
+								<td>充值号码</td>
+							</tr>
+							<tr>
+								<td>nMoney</td>
+								<td>Integer</td>
+								<td>是</td>
+								<td>充值金额<br>
+									话费产品单位为：元<br>
+									流量产品单位为：M</td>
+							</tr>
+							<tr>
+								<td>nSortType</td>
+								<td>Integer</td>
+								<td>是</td>
+								<td>运营商编码：<br>
+									<a href="#section6">见附录</a></td>
+							</tr>
+							<tr>
+								<td>nProductClass</td>
+								<td>Integer</td>
+								<td>是</td>
+								<td>1：手机<br>
+									2：固话<br>
+									3：宽带</td>
+							</tr>
+							<tr>
+								<td>nProductType</td>
+								<td>Integer</td>
+								<td>是</td>
+								<td>1：话费充值<br>
+									200：全国统付<br>
+									201：全国漫游包<br>
+									202：省内漫游包<br>
+									2013：全国漫游季包<br>
+									2016：全国漫游半年包<br>
+									20112：全国漫游年包<br>
+									2023：省内漫游季包<br>
+									2026：省内漫游半年包<br>
+									20212：省内漫游年包<br>
+									<span style="color: #cd493b">注：
+										(200为全国三网流量，包含全国移动、全国联通、全国电信；<br> 
+										&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;201为分省的全国可漫游流量；<br>
+										&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;202为分省的省内流量）</td>
+									</span>
+									</tr>
+							<tr>
+								<td>szProductId</td>
+								<td>String(16)</td>
+								<td>否</td>
+								<td>
+									特定产品编码<br>
+									(不参与校验，对接流量请忽略此参数)<br>
+									（由接口获取或商务提供，主要用于特定产品的充值）
+								</td>
+							</tr>
+							<tr>
+								<td>szTimeStamp</td>
+								<td>DateTime</td>
+								<td>是</td>
+								<td>
+									时间戳。<br>
+									用于判断过期响应，与炫捷服务器时间间隔5分钟内有效。<br>
+									格式:yyyy-MM-dd HH:mm:ss<br>
+									(例如：2016-01-01 07:23:00)
+								</td>
+							</tr>
+							<tr>
+								<td>szVerifyString</td>
+								<td>String(32)</td>
+								<td>是</td>
+								<td>验证摘要串</td>
+							</tr>
+							<tr>
+								<td>szNotifyUrl</td>
+								<td>String(128)</td>
+								<td>否</td>
+								<td>
+									完成结果回调通知地址（不参与签名）
+								</td>
+							</tr>
+							<tr>
+								<td>szFormat</td>
+								<td>String(8)</td>
+								<td>否</td>
+								<td>
+									结果返回格式:<br>
+									XML<br>
+									JSON
+								</td>
+							</tr>
+						</tbody>
+					</table>
+				</p>
+
+				<br>
+
+				<p>
+					<h4>3、订单提交 加密参数和顺序规则</h4>
+					<div style="border: 1px solid grey;padding: 20px;">
+						szVerifyString=Md5(szAgentId=xxx&szOrderId=xxx&szPhoneNum=xxx&nMoney=xxx<br>
+						&nSortType=xxx&nProductClass=xxx&nProductType=xxx&szTimeStamp=xxx&szKey=xxx) .ToLower()<br>
+						<span>32位标准Md5加密后小写(这里的xxx为具体的参数值)</span>
+					</div>
+				</p>
+
+				<br>
+
+				<p>
+					<h4>4、订单提交 请求参数示例</h4>
+					<div style="border: 1px solid grey;padding: 20px;">
+						szVerifyString=Md5(szAgentId=xxx&szOrderId=xxx&szPhoneNum=xxx&nMoney=xxx<br>
+						&nSortType=xxx&nProductClass=xxx&nProductType=xxx&szTimeStamp=xxx&szKey=xxx) .ToLower()<br>
+						<span>32位标准Md5加密后小写(这里的xxx为具体的参数值)</span>
+					</div>
+				</p>
+
+				<br>
+
+				<p>
+					<h4>5、请求返回内容</h4>
+					<table class="table table-striped">
+						<thead>
+							<tr>
+								<th>参数名称</th>
+								<th>类型</th>
+								<th>备注</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr>
+								<td>nRtn</td>
+								<td>Interger</td>
+								<td><a href="#charge_returnCode">返回状态</a></td>
+							</tr>
+							<tr>
+								<td>szOrderId</td>
+								<td>String(32)</td>
+								<td>充值请求的订单号</td>
+							</tr>
+							<tr>
+								<td>fNBalance</td>
+								<td>Decimal</td>
+								<td>结算后余额</td>
+							</tr>
+							<tr>
+								<td>fSalePrice</td>
+								<td>Decimal</td>
+								<td>该笔订单结算金额</td>
+							</tr>
+							<tr>
+								<td>szRtnCode</td>
+								<td>String(32)</td>
+								<td>返回码(以“返回状态”值为准)</td>
+							</tr>
+						</tbody>
+					</table>
+				</p>
+
+				<br>
+
+				<p>
+					<h4>6.返回内容示例</h4>
+					1)&nbsp;XML格式：
+					<div style="border: 1px solid grey;padding: 20px;margin:10px 0px;">
+						<code>
+							&lt;?xml version="1.0" encoding="UTF-8"?&gt;  <br>
+							&lt;return&gt;  <br>
+								&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  &lt;nRtn>0&lt;/nRtn&gt;  <br>
+								&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  &lt;szOrderId&gt;YXTest20160607094841&lt;/szOrderId&gt;  <br>
+								&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  &lt;fNBalance&gt;19323.8800&lt;/fNBalance&gt;  <br>
+								&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  &lt;fCredit&gt;0&lt;/fCredit&gt;  <br>
+								&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  &lt;fSalePrice&gt;7.2000&lt;/fSalePrice&gt;  <br>
+								&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  &lt;szRtnCode&gt;OK_InitOrder&lt;/szRtnCode&gt;  <br>
+							&lt;/return&gt;  <br>
+						</code>	
+					</div>
+
+					2)&nbsp;JSON格式：
+					<div style="border: 1px solid grey;padding: 20px;margin:10px 0px;">
+						<code>
+							{    <br>
+							&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 	"nRtn":0,    <br>
+							&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 	"szOrderId":"YXTest20160607100125",    <br>
+							&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 	"fNBalance":19323.8800,    <br>
+							&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 	"fCredit":0,    <br>
+							&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 	"fSalePrice":7.2000,    <br>
+							&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 	"szRtnCode":"OK_InitOrder"    <br>
+							}
+						</code>
+						
+					</div>
+				</p>
+
+				<br>
+
+				<p>
+					<h4>7.充值请求注意事项</h4>
+					<div>
+						1)	充值请求以炫捷科技服务器时间为准，时间戳差异超过5分钟则判定该次请求为过期请求。<br>
+						2)	充值请求可以多线程并发提交。<br>
+						3)	充值请求收到的结果为收单结果，收单成功不代表充值成功。<br>
+						4)	充值请求响应为非正常返回超时时间请定为最少30秒以上。如果充值请求发起时间为12时00分00秒，在12时00分31秒之前如果收到的结果为非正常响应（如：网络异常、404\400\500等等错误），那么请在12时00分31秒开始进行该订单的其他操作（可以用同订单号发起二次提交或者调用订单查询请求）。<br>
+						5)	充值请求的商户订单号由商户自行生成，订单号生成规则为字母或数字组合，商户订单号字符串长度建议为16-32位。如果商户订单号不符合生成规则（如：包含其他非法字符、订单号长度超长）造成的订单异常损失由商户自行承担。<br>
+						6)	商户订单号为请求的唯一标识。在24小时内同一订单号炫捷服务器只处理一次请求。<br>
+					</div>
+				</p>
+
+				<br>
+
+				<p>
+					<h4 id="charge_returnCode">8.返回状态码（nRtn）</h4>
+					<table class="table table-striped" >
+						<thead>
+							<tr>
+								<th>参数名称</th>
+								<th>备注</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr>
+								<td>0</td>
+								<td>提交成功</td>
+							</tr>
+							<tr>
+								<td>
+									1000系统接口维护   <br>
+									1001时间戳错误   <br>
+									1003数据格式错误   <br>
+									1004加密错误   <br>
+									2001\2002号码或号段错误   <br>
+									2003黑名单号码   <br>
+									2020\2021\2022用户信息异常   <br>
+									6005\6006余额信息错误   <br>
+									2030\2031\2032产品配置错误   <br>
+									1006余额不足   <br>
+									2043通道配置异常   <br>
+									3001\3002扣款失败   <br>
+									2040 没有配置产品   <br>
+									2041 没有配置产品售价
+								</td>
+								<td>直接处理为失败</td>
+							</tr>
+							<tr>
+								<td>
+									3003\3004扣款错误（可能是订单号重复引起的）   <br>
+									2051\2050生成订单异常   <br>
+									999 系统异常
+								</td>
+								<td>需要走查询请求确认</td>
+							</tr>
+						</tbody>
+					</table>
+				</p>
+
+			</div>
+
+			<!-- ************************************************************************************************************************************ -->
+
+			<div id="section2" style="padding-top: 50px;"> 
+				<h2>二、订单状态查询接口</h2>
+
+				<br>
+
+				<p>
+					<h4>
+						1、HTTP POST (也可以通过Socket或WebServices )<br>
+					</h4>
+					<i>
+						话费订单查询地址：http://host:port/IXJCWIQueryOrder/XJQueryOrderHF.aspx <br>
+						流量订单查询地址：http://host:port/IXJCWIQueryOrder/XJQueryOrderLL.aspx
+					</i>
+				</p>
+
+				<br>
+
+				<p>
+					<h4>2、请求参数:</h4>
+					<table class="table table-striped">
+						
+						<thead>
+							<tr>
+								<th>参数名称</th>
+								<th>类型</th>
+								<th>必填</th>
+								<th>备注</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr>
+								<td>szAgentId</td>
+								<td>String(16)</td>
+								<td>是</td>
+								<td>商户账号(需联系商务生成)</td>
+							</tr>
+							<tr>
+								<td>szOrderId</td>
+								<td>String(32)</td>
+								<td>是</td>
+								<td>充值请求时提交的订单号</td>
+							</tr>
+							<tr>
+								<td>szVerifyString</td>
+								<td>String(32)</td>
+								<td>是</td>
+								<td>验证摘要串</td>
+							</tr>
+							<tr>
+								<td>szFormat</td>
+								<td>String(8)</td>
+								<td>否</td>
+								<td>
+									结果返回格式:<br>
+									XML<br>
+									JSON
+								</td>
+							</tr>
+						</tbody>
+					</table>
+				</p>
+
+				<br>
+
+				<p>
+					<h4>3、订单状态查询 加密参数和顺序规则</h4>
+					<div style="border: 1px solid grey;padding: 20px;">
+						szVerifyString=Md5(szAgentId=xxx&szOrderId=xxx&szKey=xxx).ToLower() <br>
+						<span>32位标准Md5加密后小写(这里的xxx为具体的参数值)</span>
+					</div>
+				</p>
+
+				<br>
+
+				<p>
+					<h4>4、订单状态查询 请求参数示例</h4>
+					<div style="border: 1px solid grey;padding: 20px;">
+						szAgentId=geniusyang&szOrderId=YXTest20160607100125<br>&szVerifyString=qwertyuioplkjhgfdsazxcvbnm123456&szFormat=XML<br>
+						<span>32位标准Md5加密后小写(这里的xxx为具体的参数值)</span>
+					</div>
+				</p>
+
+				<br>
+
+				<p>
+					<h4>5、请求返回内容</h4>
+					<table class="table table-striped">
+						<thead>
+							<tr>
+								<th>参数名称</th>
+								<th>类型</th>
+								<th>备注</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr>
+								<td>nRtn</td>
+								<td>Interger</td>
+								<td>
+									返回状态。   <br>
+									999查单服务异常需要重新发起（不能判断为失败）   <br>
+									5001查单服务关闭需要人工查询（不能判断为失败）   <br>
+									5003参数错误（不能判断为失败）   <br>
+									5004加密串错误（不能判断为失败）   <br>
+									5010初始化(处理中)   <br>
+									5011处理中（处理中）   <br>
+									5012充值成功（成功）成功   <br>
+									5013充值失败（失败）失败退款   <br>
+									5019对账状态（处理中）   <br>
+									5005无此订单（无订单）可补充或退款   <br>
+									其余状态均不可处理为失败，需再次发起查询
+								</td>
+							</tr>
+							<tr>
+								<td>szOrderId</td>
+								<td>String(32)</td>
+								<td>充值请求的订单号</td>
+							</tr>
+							<tr>
+								<td>fSalePrice</td>
+								<td>Decimal</td>
+								<td>该笔订单结算金额</td>
+							</tr>
+							<tr>
+								<td>szRtnCode</td>
+								<td>String(32)</td>
+								<td>返回码(以返回状态值为准)</td>
+							</tr>
+							<tr>
+								<td>szRtnMsg</td>
+								<td>String</td>
+								<td>备注字段，不参与签名</td>
+							</tr>
+						</tbody>
+					</table>
+				</p>
+
+				<br>
+
+				<p>
+					<h4>6.返回内容示例</h4>
+					1)&nbsp;XML格式：
+					<div style="border: 1px solid grey;padding: 20px;margin:10px 0px;">
+						<code>
+							&lt;?xml version="1.0" encoding="UTF-8"?&gt;  <br>
+							&lt;return&gt;  <br>
+								&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  &lt;nRtn&gt;5012&lt;/nRtn&gt;  <br>
+								&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  &lt;szOrderId&gt;YXTest20160603132137&lt;/szOrderId&gt;  <br>
+								&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  &lt;fSalePrice&gt;7.2000&lt;/fSalePrice&gt;  <br>
+								&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  &lt;szRtnCode&gt;OrdOK&lt;/szRtnCode&gt;  <br>
+							&lt;/return&gt;  <br>
+						</code>	
+					</div>
+
+					2)&nbsp;JSON格式：
+					<div style="border: 1px solid grey;padding: 20px;margin:10px 0px;">
+						<code>
+							{    <br>
+							&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 	"nRtn":5012,    <br>
+							&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 	"szOrderId":"YXTest20160603132137",    <br>
+							&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 	"fSalePrice":7.2000,    <br>
+							&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 	"szRtnCode":”OrdOK“,    <br>
+							}
+						</code>
+					</div>
+				</p>
+
+				<br>
+
+				<p>
+					<h4>7.充值请求注意事项</h4>
+					<div>
+						1)	查询请求必须要在订单请求提交时间31秒后发起。在订单提交后30秒内未生成订单之前发起查询请求可能会无结果，但是不代表订单不存在。<br>
+						2)	炫捷科技服务器会定期对历史数据做转储或清除操作。商户方通过程序自动处理的订单有效时间为24小时内。（如2016年01月01日发起的订单可在2016年01月02日晚24时之前判断结果）<br>
+						3)	订单查询为明确成功和明确失败的订单可以对订单做最终处理，其余状态均不可自行处理为失败(处理中或初始化等生成状态的订单请处理为等待结果通知状态)。<br>
+						4)	订单查询无记录的订单建议商户方程序对同数据发起二次请求或人工客服核实处理。<br>
+						5)	针对于成功状态的订单有异议的订单，请协商客服或运营商务处理。部分订单因为运营商入账延迟等问题出现的异常在运营商没有明确处理结果之前不可处理失败退款。
+					</div>
+				</p>
+			</div>        
+			
+
+			<!-- ************************************************************************************************************************************ -->
+
+			<div id="section3" style="padding-top: 50px;">
+				<h2>三、订单状态推送（回调）</h2>
+				&nbsp;&nbsp;&nbsp;<span style="color: grey;">我方主动将订单结果推送给客户，用以用户确认订单是否成功</span>
+				<br>
+
+				<p>
+					<h4>
+						1、推送请求方式 （HTTP-POST）
+					</h4>
+				</p>
+
+				<br>
+
+				<p>
+					<h4>2、回调通知参数:</h4>
+					<table class="table table-striped">
+						
+						<thead>
+							<tr>
+								<th>参数名称</th>
+								<th>备注</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr>
+								<td>szAgentId</td>
+								<td>商户账号(需联系商务生成)</td>
+							</tr>
+							<tr>
+								<td>szOrderId</td>
+								<td>
+									商户平台自行生成的订单编号，  <br>
+									保证唯一性(由字母或数字组成)  <br>
+									同一订单号同一天内提交只处理一次  <br>
+								</td>
+							</tr>
+							<tr>
+								<td>szPhoneNum</td>
+								<td>手机号码</td>
+							</tr>
+							<tr>
+								<td>nDemo</td>
+								<td>
+									面值：  <br>
+									流量产品单位为：M  <br>
+									话费产品单位为：元  <br>
+									例如：10M   nDemo=10  <br>
+								</td>
+							</tr>
+							<tr>
+								<td>fSalePrice</td>
+								<td>售价</td>
+							</tr>
+							<tr>
+								<td>nFlag</td>
+								<td>
+									2成功<br>
+									3失败
+								</td>
+							</tr>
+							<tr>
+								<td>szRtnMsg</td>
+								<td>备注字段，不参数签名</td>
+							</tr>
+							<tr>
+								<td>szVerifyString</td>
+								<td>验证摘要串</td>
+							</tr>
+						</tbody>
+					</table>
+				</p>
+
+				<br>
+
+				<p>
+					<h4>3、推送 加密参数和顺序规则</h4>
+					<div style="border: 1px solid grey;padding: 20px;">
+						szVerifyString=Md5(szAgentId=xxx&szOrderId=xxx&szPhoneNum=xxx&  <br>
+						nDemo=xxx&fSalePrice=xxx&nFlag=xxx&szKey=xxx) .ToLower() <br>
+						<span>32位标准Md5加密后小写(这里的xxx为具体的参数值)</span>
+					</div>
+				</p>
+
+				<br>
+
+				<p>
+					<h4>4、返回内容</h4>
+					<div style="border: 1px solid grey;padding: 20px;">
+						回调信息成功接收后请返回文本“ok”
+					</div>
+				</p>
+
+			</div>
+
+
+
+
+			<!-- ************************************************************************************************************************************ -->
+
+			<div id="section4" style="padding-top: 50px;"> 
+				<h2>四、查询账户余额接口</h2>
+
+				<br>
+
+				<p>
+					<h4>
+						1、HTTP - POST (也可以通过Socket或WebServices ) <br>
+					</h4>
+					<i>
+						查询余额地址：http://host:port/IXJCWIQueryBalance/XJQueryBalance.aspx
+					</i>
+				</p>
+
+				<br>
+
+				<p>
+					<h4>2、请求参数:</h4>
+					<table class="table table-striped">
+						
+						<thead>
+							<tr>
+								<th>参数名称</th>
+								<th>类型</th>
+								<th>必填</th>
+								<th>备注</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr>
+								<td>szAgentId</td>
+								<td>String(16)</td>
+								<td>是</td>
+								<td>商户账号(需联系商务生成)</td>
+							</tr>
+							<tr>
+								<td>szVerifyString</td>
+								<td>String(32)</td>
+								<td>是</td>
+								<td>验证摘要串</td>
+							</tr>
+							<tr>
+								<td>szFormat</td>
+								<td>String(8)</td>
+								<td>否</td>
+								<td>
+									结果返回格式:<br>
+									XML<br>
+									JSON
+								</td>
+							</tr>
+						</tbody>
+					</table>
+				</p>
+
+				<br>
+
+				<p>
+					<h4>3、余额查询 参数和顺序规则</h4>
+					<div style="border: 1px solid grey;padding: 20px;">
+						szVerifyString=Md5(szAgentId=xxxx&szKey=xxxx).ToLower() <br>
+						<span>32位标准Md5加密后小写(这里的xxx为具体的参数值)</span>
+					</div>
+				</p>
+
+				<br>
+
+				<p>
+					<h4>4、余额查询 请求参数示例</h4>
+					<div style="border: 1px solid grey;padding: 20px;">
+						szAgentId=geniusyang&szVerifyString=qwertyuioplkjhgfdsazxcvbnm123456&szFormat=XML<br>
+					</div>
+				</p>
+
+				<br>
+
+				<p>
+					<h4>5、请求返回内容</h4>
+					<table class="table table-striped">
+						<thead>
+							<tr>
+								<th>参数名称</th>
+								<th>类型</th>
+								<th>备注</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr>
+								<td>nRtn</td>
+								<td>Interger</td>
+								<td>
+									返回状态。<br>
+									0为查询余额成功，其余为错误或异常<br>
+									6003提交参数有误<br>
+									6004加密有误<br>
+								</td>
+							</tr>
+							<tr>
+								<td>szAgentId</td>
+								<td>String(16)</td>
+								<td>商户账号。</td>
+							</tr>
+							<tr>
+								<td>fBalance</td>
+								<td>Decimal</td>
+								<td>帐号余额。</td>
+							</tr>
+							<tr>
+								<td>fCredit</td>
+								<td>Decimal</td>
+								<td>帐号信用额度。</td>
+							</tr>
+							<tr>
+								<td>szRtnCode</td>
+								<td>String(32)</td>
+								<td>返回码(以返回状态值为准)</td>
+							</tr>
+						</tbody>
+					</table>
+				</p>
+
+				<br>
+
+				<p>
+					<h4>6.返回内容示例</h4>
+					1)&nbsp; XML格式：
+					<div style="border: 1px solid grey;padding: 20px;margin:10px 0px;">
+						<code>
+							&lt;?xml version="1.0" encoding="UTF-8"?&gt;  <br>
+							&lt;return&gt;  <br>
+								&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  &lt;nRtn&gt;0&lt;/nRtn&gt;  <br>
+								&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  &lt;szAgentId&gt;geniusyang&lt;/szAgentId&gt;  <br>
+								&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  &lt;fBalance&gt;20009.9350&lt;/fBalance&gt;  <br>
+								&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  &lt;fCredit&gt;0&lt;/fCredit&gt;  <br>
+								&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  &lt;szRtnCode&gt;OK_QryUsrBlnc&lt;/szRtnCode&gt;  <br>
+							&lt;/return&gt;  <br>
+						</code>	
+					</div>
+
+					2)&nbsp;JSON格式：
+					<div style="border: 1px solid grey;padding: 20px;margin:10px 0px;">
+						<code>
+							{    <br>
+							&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 	"nRtn":0,    <br>
+							&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 	"szAgentId":"geniusyang",    <br>
+							&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 	"fBalance":20059.7100,    <br>
+							&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 	"fCredit":0,    <br>
+							&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 	"szRtnCode":"OK_QryUsrBlnc",    <br>
+							}
+						</code>
+					</div>
+				</p>
+
+				<br>
+
+				<p>
+					<h4>7.充值请求注意事项</h4>
+					<div>
+						1)	余额查询供用户查询最新的实时余额及固定授信额度，可用金额=用户余额+固定授信额度   <br>
+						2)	余额查询不能频繁提交，每分钟只受理一次请求。   <br>
+						3)	余额查询不可多线程提交。   <br>
+						4)	余额查询的结果可能会收到处理中订单、退款订单、调账订单、余额加款、余额扣款等因素影响，与实际账户余额有差异，以最终静态对账余额为准。   <br>
+						5)	不允许以余额变化为条件判断订单状态。   <br>
+
+
+					</div>
+				</p>
+			</div>        
+			
+
+
+
+			<!-- ************************************************************************************************************************************ 
+
+			<div id="section5" style="padding-top: 50px;"> 
+				<h2>五、号码信息查询接口</h2>
+
+				<br>
+
+				<p>
+					<h4>
+						1、HTTP POST (也可以通过Socket或WebServices )
+					</h4>
+				</p>
+
+				<br>
+
+				<p>
+					<h4>2、请求参数:</h4>
+					<table class="table table-striped">
+						
+						<thead>
+							<tr>
+								<th>参数名称</th>
+								<th>类型</th>
+								<th>必填</th>
+								<th>备注</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr>
+								<td>szAgentId</td>
+								<td>String(16)</td>
+								<td>是</td>
+								<td>商户账号(需联系商务生成)</td>
+							</tr>
+							<tr>
+								<td>szPhoneNum</td>
+								<td>String(32)</td>
+								<td>是</td>
+								<td>查询号码<br>(手机号、水电煤号、加油卡号等)</td>
+							</tr>
+							<tr>
+								<td>szSortType</td>
+								<td>String(16)</td>
+								<td>是</td>
+								<td>
+									PHONE手机号   <br>
+									SGCC国家电网   <br>
+									SINOPEC中石化   <br>
+									WATER 给水号
+								</td>
+							</tr>
+							<tr>
+								<td>szAreaUnit</td>
+								<td>String(16)</td>
+								<td>否</td>
+								<td>水电煤需要传入支局编号</td>
+							</tr>
+							<tr>
+								<td>szVerifyString</td>
+								<td>String(32)</td>
+								<td>是</td>
+								<td>验证摘要串</td>
+							</tr>
+							<tr>
+								<td>szFormat</td>
+								<td>String(8)</td>
+								<td>否</td>
+								<td>
+									结果返回格式:<br>
+									XML<br>
+									JSON
+								</td>
+							</tr>
+						</tbody>
+					</table>
+				</p>
+
+				<br>
+
+				<p>
+					<h4>3、查询手机号信息 参数和顺序规则</h4>
+					<div style="border: 1px solid grey;padding: 20px;">
+						szVerifyString=Md5(szAgentId=xxx&szPhoneNum=xxx&szSortType=XXX&szKey=xxx).ToLower() <br>
+						<span>32位标准Md5加密后小写(这里的xxx为具体的参数值)</span>
+					</div>
+				</p>
+
+				<br>
+
+				<p>
+					<h4>4、查询手机号信息 请求参数示例</h4>
+					<div style="border: 1px solid grey;padding: 20px;">
+						szAgentId=geniusyang&szPhoneNum=0723211080&szSortType=SGCC& <br> szVerifyString=qwertyuioplkjhgfdsazxcvbnm123456&szFormat=XML<br>
+					</div>
+				</p>
+
+				<br>
+
+				<p>
+					<h4>5、请求返回内容</h4>
+					<table class="table table-striped">
+						<thead>
+							<tr>
+								<th>参数名称</th>
+								<th>类型</th>
+								<th>备注</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr>
+								<td>nRtn</td>
+								<td>Interger</td>
+								<td>
+									返回状态。<br>
+									0为查询余额成功，其余为错误或异常
+								</td>
+							</tr>
+							<tr>
+								<td>nSortType</td>
+								<td>Interger</td>
+								<td>
+									运营商编码：   <br>
+									1、移动   <br>
+									2、联通   <br>
+									3、电信   <br>
+									4、虚商(170、171等)   <br>
+									5-99、其他运营商   <br>
+									101、电费   <br>
+									102、水费   <br>
+									103、广电有线电视   <br>
+									104、中石化加油   <br>
+									105、中石油   <br>
+									106-199、其它   <br>
+									201-999、游戏产品
+								</td>
+							</tr>
+							<tr>
+								<td>szProvName</td>
+								<td>String(16)</td>
+								<td>手机号省归属</td>
+							</tr>
+							<tr>
+								<td>szAreaName</td>
+								<td>String(16)</td>
+								<td>手机号归属地市</td>
+							</tr>
+							<tr>
+								<td>szPhoneName</td>
+								<td>String(16)</td>
+								<td>机主姓名</td>
+							</tr>
+							<tr>
+								<td>szPhoneBlnc</td>
+								<td>String(16)</td>
+								<td>号码余额（或欠费金额）</td>
+							</tr>
+							<tr>
+								<td>szPhoneRemark</td>
+								<td>String(128)</td>
+								<td>备注</td>
+							</tr>
+							<tr>
+								<td>szRtnCode</td>
+								<td>String(32)</td>
+								<td>返回码(以返回状态值为准)</td>
+							</tr>
+						</tbody>
+					</table>
+				</p>
+
+				<br>
+
+				<p>
+					<h4>6.返回内容示例</h4>
+					1) &nbsp; XML格式：
+					<div style="border: 1px solid grey;padding: 20px;margin:10px 0px;">
+						<code>
+							&lt;?xml version="1.0" encoding="UTF-8"?&gt;  <br>
+							&lt;return&gt;  <br>
+								&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 	&lt;nRtn>0&lt;/nRtn&gt;  <br>
+								&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  &lt;nRtn&gt; 5012 &lt;/nRtn&gt;  <br>
+								&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  &lt;nSortType&gt; 101 &lt;/nSortType&gt;  <br>
+								&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  &lt;szProvName&gt; 山东 &lt;/szProvName&gt;  <br>
+								&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  &lt;szAreaName&gt; 山东济南 &lt;/szAreaName&gt;  <br>
+								&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  &lt;szPhoneName&gt; 杨玺 &lt;/szPhoneName&gt;  <br>
+								&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  &lt;szPhoneBlnc&gt; -208.32 &lt;/szPhoneBlnc&gt;  <br>
+								&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  &lt;szPhoneRemark&gt; 经十路24666号1-1-504 &lt;/szPhoneRemark&gt;  <br>
+								&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  &lt;szRtnCode&gt; QryOK &lt;/szRtnCode&gt;  <br>
+							&lt;/return&gt;  <br>
+						</code>	
+					</div>
+ 
+					2) &nbsp; JSON格式：
+					<div style="border: 1px solid grey;padding: 20px;margin:10px 0px;">
+						<code>
+							{    <br>
+							&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 	"nRtn":5012,    <br>
+							&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 	"nSortType":101,    <br>
+							&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 	"szProvName":"山东",    <br>
+							&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 	"szAreaName":"山东济南",    <br>
+							&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 	"szPhoneName":"杨玺",    <br>
+							&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 	"szPhoneBlnc":-208.32,    <br>
+							&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 	"szPhoneRemark":"经十路24666号1-1-504",    <br>
+							&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 	"szRtnCode":"OrdOK",    <br>
+							}
+						</code>
+					</div>
+				</p>
+
+				<br>
+
+				<p>
+					<h4>7.充值请求注意事项</h4>
+					<div>
+						1)	余额查询供用户查询最新的实时余额及固定授信额度，可用金额=用户余额+固定授信额度   <br>
+						2)	余额查询不能频繁提交，每分钟只受理一次请求。   <br>
+						3)	余额查询不可多线程提交。   <br>
+						4)	余额查询的结果可能会收到处理中订单、退款订单、调账订单、余额加款、余额扣款等因素影响，与实际账户余额有差异，以最终静态对账余额为准。   <br>
+						5)	不允许以余额变化为条件判断订单状态。   <br>
+
+
+					</div>
+				</p>
+			</div>        
+			-->
+
+
+		<!-- ************************************************************************************************************************************ -->
+
+			<div id="section6" style="padding-top: 50px;"> 
+				<h2>六、附录</h2>
+
+				<br>
+
+				<p>
+					<h4>运营商编码</h4>
+					<table class="table table-striped">
+						<thead>
+							<tr>
+								<th>编码</th>
+								<th>运营商</th>
+								<th>备注</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr>
+								<td>1</td>
+								<td>移动</td>
+								<td></td>
+							</tr>
+							<tr>
+								<td>2</td>
+								<td>联通</td>
+								<td></td>
+							</tr>
+							<tr>
+								<td>3</td>
+								<td>电信</td>
+								<td></td>
+							</tr>
+							<tr>
+								<td>4</td>
+								<td>虚商</td>
+								<td></td>
+							</tr>
+							<tr>
+								<td>5</td>
+								<td>爱施德</td>
+								<td></td>
+							</tr>
+							<tr>
+								<td>6</td>
+								<td>迪信通</td>
+								<td></td>
+							</tr>
+							<tr>
+								<td>7</td>
+								<td>分享</td>
+								<td></td>
+							</tr>
+							<tr>
+								<td>8</td>
+								<td>凤凰</td>
+								<td></td>
+							</tr>
+							<tr>
+								<td>9</td>
+								<td>话机世界</td>
+								<td></td>
+							</tr>
+							<tr>
+								<td>10</td>
+								<td>苏宁</td>
+								<td></td>
+							</tr>
+							<tr>
+								<td>11</td>
+								<td>天音</td>
+								<td></td>
+							</tr>
+							<tr>
+								<td>12</td>
+								<td>蜗牛</td>
+								<td></td>
+							</tr>
+							<tr>
+								<td>13</td>
+								<td>星美</td>
+								<td></td>
+							</tr>
+							<tr>
+								<td>14</td>
+								<td>中麦</td>
+								<td></td>
+							</tr>
+							<tr>
+								<td>15</td>
+								<td>远特</td>
+								<td></td>
+							</tr>
+							<tr>
+								<td>16</td>
+								<td>银盛</td>
+								<td></td>
+							</tr>
+							<tr>
+								<td>17</td>
+								<td>朗玛</td>
+								<td></td>
+							</tr>
+							<tr>
+								<td>18</td>
+								<td>海航</td>
+								<td></td>
+							</tr>
+							<tr>
+								<td>19</td>
+								<td>青牛</td>
+								<td></td>
+							</tr>
+							<tr>
+								<td>20</td>
+								<td>红豆</td>
+								<td></td>
+							</tr>
+							<tr>
+								<td>21</td>
+								<td>民生</td>
+								<td></td>
+							</tr>
+							<tr>
+								<td>22</td>
+								<td>乐语</td>
+								<td></td>
+							</tr>
+							<tr>
+								<td>23</td>
+								<td>中兴</td>
+								<td></td>
+							</tr>
+							<tr>
+								<td>24</td>
+								<td>国美</td>
+								<td></td>
+							</tr>
+							<tr>
+								<td>25</td>
+								<td>日日顺</td>
+								<td></td>
+							</tr>
+							<tr>
+								<td>26</td>
+								<td>中期</td>
+								<td></td>
+							</tr>
+							<tr>
+								<td>27</td>
+								<td>长江</td>
+								<td></td>
+							</tr>
+							<tr>
+								<td>28</td>
+								<td>用友</td>
+								<td></td>
+							</tr>
+							<tr>
+								<td>29</td>
+								<td>三五互联</td>
+								<td></td>
+							</tr>
+							<tr>
+								<td>30</td>
+								<td>优酷</td>
+								<td></td>
+							</tr>
+							<tr>
+								<td>31</td>
+								<td>华翔</td>
+								<td></td>
+							</tr>
+							<tr>
+								<td>32</td>
+								<td>连连</td>
+								<td></td>
+							</tr>
+							<tr>
+								<td>33</td>
+								<td>中邮</td>
+								<td></td>
+							</tr>
+							<tr>
+								<td>34</td>
+								<td>鹏博士</td>
+								<td></td>
+							</tr>
+							<tr>
+								<td>35</td>
+								<td>京东</td>
+								<td></td>
+							</tr>
+							<tr>
+								<td>99</td>
+								<td>阿里</td>
+								<td></td>
+							</tr>
+							<tr>
+								<td>101</td>
+								<td>电费</td>
+								<td></td>
+							</tr>
+							<tr>
+								<td>102</td>
+								<td>水费</td>
+								<td></td>
+							</tr>
+							<tr>
+								<td>103</td>
+								<td>广电有线电视</td>
+								<td></td>
+							</tr>
+							<tr>
+								<td>104</td>
+								<td>中石化</td>
+								<td></td>
+							</tr>
+							<tr>
+								<td>105</td>
+								<td>中石油</td>
+								<td></td>
+							</tr>
+							<tr>
+								<td>41</td>
+								<td>其它</td>
+								<td></td>
+							</tr>
+							<tr>
+								<td>106-199</td>
+								<td>201-999</td>
+								<td></td>
+							</tr>
+
+						</tbody>
+					</table>
+				</p>					
+			</div>   
+
+
+
+			
+		</div>
+	</div>
+</div>
+
+</body>
+</html>   <br>

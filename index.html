@@ -1,88 +1,525 @@
 <!DOCTYPE html>
 <html>
-	<head>
-		<meta charset="utf-8" />
-		<meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1, user-scalable=no">
-		<meta name="apple-mobile-web-app-capable" content="yes">
-		<meta name="apple-mobile-web-app-status-bar-style" content="black">
-		
-		<script type="text/javascript" src="js/jquery/jquery-1.9.1.min.js"></script>
-		<script type="text/javascript" src="css/bootstrap-3.3.5/js/bootstrap.min.js"></script>
-		<link rel="stylesheet" href="css/bootstrap-3.3.5/css/bootstrap.min.css" />
-		
-		<title>Malcolm's Blog</title>
-		
-		<style>
-			.item{
-				float: left;
-				height: 200px;
-			}
-		</style>
-		
-	</head>
+<head>
+    <meta charset="utf8" >
+    <script type="text/javascript" src="js/jquery-2.1.4/jquery.min.js"></script>
+	<script type="text/javascript" src="css/bootstrap-3.3.5/js/bootstrap.min.js" ></script>
+	<link rel="stylesheet" href="css/bootstrap-3.3.5/css/bootstrap.min.css" />
+	<link rel="stylesheet" type="text/css" href="css/common.css"/>
+    <title>炫捷科技官网</title>
+    <style>
 
-	<body>
-		<!-- nav start -->
-		<div class="row clearfix">
-			<div class="col-md-12 column">
-				<nav class="navbar navbar-default" role="navigation">
-					<div class="navbar-header">
-						 <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1"> <span class="sr-only">Toggle navigation</span><span class="icon-bar"></span><span class="icon-bar"></span><span class="icon-bar"></span></button> <a class="navbar-brand" href="#">Malcolm's Blog</a>
-					</div>
-					
-					<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-						<ul class="nav navbar-nav">
-							<li class="active">
-								 <a href="#">文章</a>
-							</li>
-							<li class="dropdown">
-								 <a href="#" class="dropdown-toggle" data-toggle="dropdown">分类<strong class="caret"></strong></a>
-								<ul class="dropdown-menu">
-									<li>
-										 <a href="#">Java</a>
-									</li>
-									<li>
-										 <a href="#">Python</a>
-									</li>
-									<li class="divider">
-									</li>
-									<li>
-										 <a href="#">MongoDB</a>
-									</li>
-									<li>
-										 <a href="#">MySQL</a>
-									</li>
-									<li class="divider">
-									</li>
-									<li>
-										 <a href="#">操作系统相关</a>
-									</li>
-									<li>
-										 <a href="#">工具相关</a>
-									</li>
-								</ul>
-							</li>
-							<li>
-								 <a href="about.html">关于</a>
-							</li>
-						</ul>
-					</div>
-				</nav>
+    .caption2{
+    	display: inline-block;
+    	position: relative;
+    	margin: 10px;
+    	overflow: hidden;
+    	background: #FFFFFF;
+    	float: left;
+    	width: 220px;
+    	height: 300px;
+    }
+    .caption2 img{
+        display: block;
+        max-width: 100%;
+   
+    }
+    .caption2:hover{
+    	box-shadow: 0px 0px 20px gray;
+    	-webkit-transition:box-shadow 0.3s ease-in-out;
+           -moz-transition:box-shadow 0.3s ease-in-out;
+                transition:box-shadow 0.3s ease-in-out;
+    }
+    
+    .caption2:hover img{
+        opacity: .5;
+        -webkit-transition:opacity 0.3s ease-in-out;
+           -moz-transition:opacity 0.3s ease-in-out;
+                transition:opacity 0.3s ease-in-out;
+    }
+    .caption2::before,.caption2::after{
+        position: absolute;
+        background: #fff;
+        width: 100%;
+        height: 50%;
+        color: #fff;
+        padding: 20px;
+		-webkit-transition:-webkit-transform 0.3s ease-in-out;
+              -moz-transition:-moz-transform 0.3s ease-in-out;
+                        transition:transform 0.3s ease-in-out;
+    }
+    .caption2::before{
+        content: attr(data-description);
+        top: 0;
+        opacity: 0.9;
+        z-index: 1;
+        padding:40px 20px;
+        background: #3684CC;
+        font-size: 18px;
+        font-weight: 300;
+        text-align: center;
+        -webkit-transform: translateY(-100%);
+        -moz-transform: translateY(-100%);
+        transform: translateY(-100%);
+    }
+    .caption2::after{
+        content: '了解更多';
+        opacity: 0.9;
+        top: 58%;
+        background: #00B8EE;
+        text-align: center;
+        font-size: 22px;
+        padding-top: 50px;
+        -webkit-transform: translateY(100%);
+        -moz-transform: translateY(100%);
+        transform: translateY(100%);
+    }
+    .caption2:hover::before,.caption2:hover::after{
+        -webkit-transform: translateY(0);
+        -moz-transform: translateY(0);
+        transform: translateY(0);
+    }
+    
+    .itemContent1{
+    	margin: 0 auto;height: 80px;width: 100px;margin-top: 60px;
+    }
+    .itemContent2{
+    	margin: 0 auto;border-bottom: 3px solid #047AFE;width: 50px;margin-top: 20px;
+    }
+    .itemContent3{
+    	margin: 0 auto;text-align: center;margin-top: 30px;font-size: 30;
+    }
+    section div a .itemContent3{
+    	font-size: 22px;
+    	color: #2F2F2F;
+
+    }
+    section div div a:hover{text-decoration: none;color: #2F2F2F;}
+	section div div a:visited{text-decoration: none;color: #2F2F2F;}
+	section div div a:link {text-decoration: none;color: #2F2F2F;}
+	section div div a:active {text-decoration: none;color: #2F2F2F;}
+	
+	.itemPlat_Big{
+		height: 560px;
+		width: 900px;
+		float: left;
+		background-position: center;
+		background-repeat: no-repeat;
+		background-size: 100%;
+		border: 3px solid #FFFFFF;
+	}
+	.itemPlat{
+		height: 187px;
+		width: 300px;
+		float: left;
+		background-position: center;
+		background-repeat: no-repeat;
+		background-size: 100%;
+		cursor: pointer;
+		border: 3px solid #FFFFFF;
+		opacity: 0.5;
+	}
+	
+	.tagBall {
+	    width: 500px;
+	    height: 500px;
+	    margin: 0px auto;
+	    position: relative;
+	    border: 1px solid royalblue;
+	}
+	
+	.tag{
+		font-weight: bold;
+		position:absolute;
+		animation:myfirst 5s infinite alternate; 
+		-webkit-animation:myfirst 5s infinite ease-in-out; /* Safari and Chrome */
+		display: block;
+		height: 100px;
+		width: 100px;
+	}
+	
+	@keyframes myfirst{
+		0%   {opacity:0.1; left:50px; top:10px;font-size: 10px;z-index: 70;}
+		
+		50% {opacity:1; left:59px; top:100px;font-size: 19px;z-index: 79;}
+		
+		100% {opacity:0.1; left:50px; top:200px;font-size: 10px;z-index: 70;}
+	}
+	
+	@-webkit-keyframes myfirst /* Safari and Chrome */{
+		0%   {opacity:0.1; left:50px; top:10px;font-size: 10px;z-index: 70;}
+		
+		50% {opacity:1; left:59px; top:100px;font-size: 19px;z-index: 79;}
+		
+		100% {opacity:0.1; left:50px; top:200px;font-size: 10px;z-index: 70;}
+	}
+	
+	.liucheng{
+		/*border: #089DE1 1px solid ;*/
+		float: left;
+		width: 260px;
+		text-align: center;
+		height: 300px;
+		padding-top: 60px;
+	}
+	.liucheng_jiantou{
+		float: left;
+		width: 55px;
+		height: 300px;
+		line-height: 300px;
+		font-size: 18px;
+		color: gray;
+	}
+	.huoban{
+		text-align: center;
+		float: left;
+		height: 80px;
+		width: 240px;
+	}
+
+	
+	
+	.activeJT1{
+		opacity: 0.3;
+		animation:activejiantou 1s infinite ease-in-out; 
+		-webkit-animation:activejiantou 1s infinite ease-in-out; /* Safari and Chrome */
+	}
+	.activeJT2{
+		opacity: 0.3;
+		animation:activejiantou 1s infinite ease-in-out 0.1s; 
+		-webkit-animation:activejiantou 1s infinite ease-in-out 0.1s; /* Safari and Chrome */
+	}
+	.activeJT3{
+		opacity: 0.3;
+		animation:activejiantou 1s infinite ease-in-out 0.2s; 
+		-webkit-animation:activejiantou 1s infinite ease-in-out 0.2s; /* Safari and Chrome */
+	}
+	@keyframes activejiantou{
+		0%   {opacity:0.3;}
+		50% {opacity:1; }
+		100% {opacity:0.3; }
+	}
+	
+	@-webkit-keyframes myfirst /* Safari and Chrome */{
+		0%   {opacity:0.3;}
+		50% {opacity:1; }
+		100% {opacity:0.3; }
+	}
+	
+	.liuchengimage:hover{
+    		    transform: rotate(360deg);
+		    -ms-transform: rotate(360deg); /* IE 9 */
+		-webkit-transform: rotate(360deg); /* Safari and Chrome */
+		
+    	-webkit-transition:transform 0.3s ease-in-out;
+           -moz-transition:transform 0.3s ease-in-out;
+                transition:transform 0.3s ease-in-out;
+    }
+    footer div div div div a:link{text-decoration: none;color: #FFFFFF;}
+    footer div div div div a:visited{text-decoration: none;color: #FFFFFF;}
+    footer div div div div a:hover{text-decoration: none;color: #FFFFFF;}
+    footer div div div div a:active{text-decoration: none;color: #FFFFFF;}
+    </style>
+</head>
+<body>
+<div class="container-fluid">
+	
+	
+	<header class="row" style="clear: both;padding-top: 5px;background: url(img/backImage1.jpg) center;height: 480px;">
+		<div >
+			<div class="col-md-2" style="padding-left: 50px;">
+				<a href="index.html"><img src="img/炫捷  logo.png" height="60px;" style="margin-left: 10px;"/></a>
+			</div>	
+			<div class="col-md-7" style="height: 60px;">
+				<a class="caption" href="#" >
+		    		<div class="menuText">话费</div>
+				</a>
+				<a class="caption" href="#" >
+				    <div class="menuText">流量</div>
+				</a>
+				<a class="caption" href="#" >
+				    <div class="menuText">加油卡</div>
+				</a>
+				<a class="caption" href="#" >
+				    <div class="menuText">游戏点卡</div>
+				</a>
+				<a class="caption" href="#" >
+				    <div class="menuText">视频会员</div>
+				</a>
+				<a class="caption" href="API.html" >
+				    <div class="menuText">API文档</div>
+				</a>
+			</div>
+			<div class="col-md-3">
+				<a class="caption" href="#" >
+				    <div class="menuText">关于我们</div>
+				</a>
+				<a class="caption" href="#" >
+				    <div class="menuText">联系我们</div>
+				</a>
 			</div>
 		</div>
-		<!-- nav end -->
-		
-		<!-- big item -->
-		<div style="width: 100%;height: 200px;">
-			<img src="images/jianguo2.JPG" class="img-rounded" style="width: 100%;">
+		<div style="clear: both;border-bottom: 1px solid darkgrey;"></div>
+	</header>
+	
+	
+	<section>
+		<div class="row" style="text-align: center;width: 100%;font-size: 32px;margin-top: 30px;">主营业务</div>
+		<div class="row" style="margin-top: 0px;">
+			<div style="width: 1200px;margin: 0 auto;">
+				<a class=" caption2" onmouseenter="bigger(this)" onmouseleave="smaller(this)"
+				    href="#" 
+				    data-description="移动、联通、电信   全国全面值">
+				    <div class="itemContent1" style="background: url(img/item1.png) center;"></div>
+				    <div class="itemContent2"></div>		    
+				    <div class="itemContent3">
+						话费充值
+				    </div>
+				    
+				</a>
+				
+				<a class="caption2"  onmouseenter="bigger(this)" onmouseleave="smaller(this)"
+				    href="#" 
+				    data-description="移动、联通、电信    全国流量包">
+				    <div class="itemContent1" style="background: url(img/item2.png) center;"></div>
+				    <div class="itemContent2"></div>
+				    <div class="itemContent3">
+						流量充值
+				    </div>
+				</a>
+				
+				
+				<a class="caption2"  onmouseenter="bigger(this)" onmouseleave="smaller(this)"
+				    href="#" 
+				    data-description="支持中国石化、中国石油的加油卡充值">
+				    <div class="itemContent1" style=";background: url(img/item3.png) center;"></div>
+				    <div class="itemContent2"></div>
+				    <div class="itemContent3">
+						加油卡充值
+				    </div>
+				</a>
+				
+				<a class="caption2"  onmouseenter="bigger(this)" onmouseleave="smaller(this)"
+				    href="#" 
+				    data-description="支持全网游戏点卡、Q币充值业务！">
+				    <div class="itemContent1" style="background: url(img/item4.png) center;"></div>
+				    <div class="itemContent2"></div>
+				    <div class="itemContent3">
+						游戏点卡充值
+				    </div>
+				</a>
+				
+				<a class="caption2"  onmouseenter="bigger(this)" onmouseleave="smaller(this)"
+				    href="#" 
+				    data-description="腾讯、爱奇艺、优酷、乐视会员">
+				    <div class="itemContent1" style="background: url(img/item5.png) center;"></div>
+				    <div class="itemContent2"></div>
+				    <div class="itemContent3">
+						视频会员充值
+				    </div>
+				</a>	
+			</div>
 		</div>
+	</section>
+	
+	<section>
+		<div class="row" style="text-align: center;width: 100%;font-size: 32px;margin-top: 20px;margin-bottom: 40px;">服务方式</div>
+		<div id="showPlat" class="row" style="position: relative;border-radius: 8px;width: 1210px;margin: 0 auto;">
+			<div class="itemPlat_Big" style="background: url(img/app-1.jpg);background-size: 100%;" onclick="showThis(this)"></div>
+			<div class="itemPlat" style="background: url(img/dn.jpg);background-size: 100%;" onclick="showThis(this)"></div>
+			<div class="itemPlat" style="background: url(img/md.jpg);background-size: 100%;" onclick="showThis(this)"></div>
+			<div class="itemPlat" style="background: url(img/wx.jpg);background-size: 100%;" onclick="showThis(this)"></div>
+			<div style="z-index: 1000;background: url(img/top.png) no-repeat;width: 57px;height: 29px;position: absolute;right: 135px;top: 2px;transform:rotate(0deg);cursor: pointer;" onclick="next()"></div>
+			<div style="z-index: 1000;background: url(img/top.png) no-repeat;width: 57px;height: 29px;position: absolute;right: 135px;top: 529px;transform:rotate(180deg);cursor: pointer;" onclick="next()"></div>
+		</div>
+	</section>
+	
+	
+	<section>
+		<div class="row" style="text-align: center;width: 100%;font-size: 32px;margin-top: 60px;margin-bottom: 40px;">合作流程</div>
+		<div class="row" style="position: relative;border-radius: 8px;width: 1210px;margin: 0 auto;margin-bottom: 100px;">
+			<div class="liucheng">
+				<img class="liuchengimage" src="img/liucheng1.png" />
+				<h3>签署合同</h3>
+				<p>双方确认接口模式及相关细节，签署相关协议</p>
+			</div>
+			
+			<div class="liucheng_jiantou"> 
+				<span class="activeJT1"> > </span>
+				<span class="activeJT2"> > </span>
+				<span class="activeJT3"> > </span>
+			</div>
+			
+			<div class="liucheng">
+				<img class="liuchengimage" src="img/liucheng2.png" />
+				<h3>接口开发</h3>
+				<p>合作伙伴依据协议进行接口开发</p>
+			</div>
+			
+			<div class="liucheng_jiantou">
+				<span class="activeJT2"> > </span>
+				<span class="activeJT3"> > </span>
+				<span class="activeJT1"> > </span>
+			</div>
+			
+			<div class="liucheng">
+				<img class="liuchengimage" src="img/liucheng3.png" />
+				<h3>系统调试</h3>
+				<p>合作伙伴通过乙方测试环境进行系统调试</p>
+			</div>
+			
+			<div class="liucheng_jiantou">
+				<span class="activeJT3"> > </span>
+				<span class="activeJT1"> > </span>
+				<span class="activeJT2"> > </span>
+			</div>
+			
+			<div class="liucheng">
+				<img class="liuchengimage" src="img/liucheng4.png" />
+				<h3>上线运营</h3>
+				<p>合作伙伴部署上线，正式运营项目</p>
+			</div>
+		</div>
+	</section>
+	
+	
+	<section>
+		<div class="row" style="text-align: center;width: 100%;font-size: 32px;margin-top: 60px;margin-bottom: 40px;">合作伙伴</div>
+		<div class="row" style="position: relative;border-radius: 8px;width: 1210px;margin: 0 auto;margin-bottom: 100px;">
+			<div class="huoban">
+				<img src="img/huoban/caifutong.jpg" />
+			</div>
+			<div class="huoban">
+				<img src="img/huoban/hebao.jpg" />
+			</div>
+			<div class="huoban">
+				<img src="img/huoban/jindeli.jpg" />
+			</div>
+			<div class="huoban">
+				<img src="img/huoban/lianhang.jpg" />
+			</div>
+			<div class="huoban">
+				<img src="img/huoban/liantong.jpg" />
+			</div>
+			<div class="huoban">
+				<img src="img/huoban/post.jpg" />
+			</div>
+			<div class="huoban">
+				<img src="img/huoban/qianxing.jpg" />
+			</div>
+			<div class="huoban">
+				<img src="img/huoban/qq.jpg" />
+			</div>
+			<div class="huoban">
+				<img src="img/huoban/shihua.jpg" />
+			</div>
+			<div class="huoban">
+				<img src="img/huoban/shiyou.jpg" />
+			</div>
+			<div class="huoban">
+				<img src="img/huoban/shoulashou.jpg" />
+			</div>
+			<div class="huoban">
+				<img src="img/huoban/xinghong.jpg" />
+			</div>
+			<div class="huoban">
+				<img src="img/huoban/xunlian.jpg" />
+			</div>
+			<div class="huoban">
+				<img src="img/huoban/yidong.jpg" />
+			</div>
+			<div class="huoban">
+				<img src="img/huoban/yidong_2.jpg" />
+			</div>
+			<div class="huoban">
+				<img src="img/huoban/yisai.jpg" />
+			</div>
+			<div class="huoban">
+				<img src="img/huoban/zhifubao.jpg" />
+			</div>
+			<div class="huoban">
+				<img src="img/huoban/yidong_2.jpg" />
+			</div>
+			
+		</div>
+	</section>
+	
+	
+	<footer class="row">
+		<div style="background-color: #666666;height: 280px;width: 100%;">
+			<div style="width: 1200px;margin: 0 auto;color:#FFFFFF;font-size: 16px;">
+				<div class="col-md-4" style="">
+					<div style="margin-top: 20px;font-size: 24px;font-weight: bold;"> <a href="tel:400-061-6667">400-061-6667</a></div>
+					<div style="margin-top: 20px;">济南炫捷信息技术有限公司</div>
+					<div style="margin-top: 20px;"><a href="mailto:xuanjie@jiefupay.com">邮箱：xuanjie@jiefupay.com</a></div>
+					<div style="margin-top: 20px;">地址：济南市历下区解放东路 中宏广场D座 1216</div>
+					<div style="margin-top: 20px;">工信部备案编号：鲁ICP备16001477号</div>
+				</div>
+				<div class="col-md-4" style="padding-left: 70px;">
+					<div style="margin-top: 20px;font-size: 24px;font-weight: bold;">主营业务</div>
+					<div style="margin-top: 20px;">全国三网话费&nbsp;&nbsp;&nbsp;三网流量</div>
+					<div style="margin-top: 20px;">虚拟充值&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;小面额充值</div>
+					<div style="margin-top: 20px;">腾讯产品&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;物联网卡充值</div>
+					<div style="margin-top: 20px;">电力查询&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;加油卡充值</div>
+				</div>
+				<div class="col-md-4" style="padding-top: 30px;text-align: center;">
+					<div style="float: left;">
+						<img src="img/自由充.jpg" height="160px"/> <br/><div style="padding-top: 10px;">叮咚自由充</div>
+					</div>
+					<div style="float: left;margin-left: 20px;">
+						<img src="img/官网二维码.png" height="160px"/>  <br/> <div style="padding-top: 10px;">炫捷官网</div>
+					</div>
+					
+				</div>
+			</div>
+		</div>
+		<div style="background-color: #3B3B3B;height: 70px;width: 100%;">
+			<div style="width: 1200px;margin: 0 auto;text-align: center;color: #9C9C9C;line-height: 70px;font-size: 18px;">
+				<span>Copyright 济南炫捷信息技术有限公司 All Rights Reserved</span>
+			</div>
+		</div>
+	</footer>
+	
+	
+	
+	
+	
+	
+	
+	<!--<section class="tagBall">
+		<div class="tag" style="background: url(img/item3.png) center;"></div>
+	</section>-->
+
+</div>
+	<script>
 		
-		<!-- itmes -->
-		<img src="images/jianguo1.JPG" class="img-thumbnail" style="width: 100%;">
-		<img src="images/jianguo44.JPG" class="img-thumbnail" style="width: 100%;">
-		<img src="images/jianguo22.JPG" class="img-thumbnail" style="width: 100%;">
-		<img src="images/jianguo33.JPG" class="img-thumbnail" style="width: 100%;">
-	</body>
+		function bigger(o){
+			var firstDiv = $(o).children()[1];
+			$(firstDiv).animate({width:"150px"});
+		}
+		function smaller(o){
+			var firstDiv = $(o).children()[1];
+			
+			$(firstDiv).animate({width:"50px"});
+		}
+		function showThis(o){
+			var allChildren = $("#showPlat").children();
+			$.each(allChildren, function(i,obj) {
+				if($(obj).hasClass("itemPlat_Big")){
+					$(obj).removeClass("itemPlat_Big").addClass("itemPlat");
+				}
+			});
+			if($(o).hasClass("itemPlat")){
+				$(o).removeClass("itemPlat").addClass("itemPlat_Big");
+				$("#showPlat").prepend(o);
+			}
+		}
+		function next(){
+			var firstDiv = $("#showPlat").children()[3];
+			$(firstDiv).click();
+		}
+	</script>
+</body>
+
 
 </html>
-
