@@ -9,7 +9,17 @@
 	<link rel="stylesheet" href="css/bootstrap-3.3.5/css/bootstrap.min.css" />
 	<link rel="stylesheet" type="text/css" href="css/common.css"/>
 	<style>
-		
+		#thisPage::after{
+			text-align: center;
+		    position: absolute;
+			border-bottom: 2px solid #00AEFF;
+		    color: #fff;      
+		    content: "";
+		    bottom: 0px;
+		    text-align: right;
+		    width: 100%;
+		    z-index: 100;
+		}
 		ul.nav-pills {
 			top: 20px;
 			position: fixed;
@@ -33,8 +43,11 @@
 				<a href="index.html"><img src="img/炫捷  logo.png" height="60px;" style="margin-left: 10px;"/></a>
 			</div>	
 			<div class="col-md-7" style="height: 60px;">
-				<a class="caption" style="text-decoration: none;" href="#" >
-		    		<div class="menuText">话费</div>
+				<a class="caption" href="index.html" >
+		    			<div class="menuText">首页</div>
+				</a>
+				<a class="caption" style="text-decoration: none;" href="hf.html" >
+		    			<div class="menuText">话费</div>
 				</a>
 				<a class="caption" style="text-decoration: none;" href="#" >
 				    <div class="menuText">流量</div>
@@ -48,8 +61,8 @@
 				<a class="caption" style="text-decoration: none;" href="#" >
 				    <div class="menuText">视频会员</div>
 				</a>
-				<a class="caption" style="text-decoration: none;" href="API.html" >
-				    <div class="menuText">API文档</div>
+				<a class="caption" id="thisPage" style="text-decoration: none;" href="API.html" >
+				    <div class="menuText" style="color: #00AEFF;">API文档</div>
 				</a>
 				
 			</div>
