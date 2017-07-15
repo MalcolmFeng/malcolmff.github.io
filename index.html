@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <meta charset="utf8" >
+    <meta charset="utf-8" >
     <script type="text/javascript" src="js/jquery-2.1.4/jquery.min.js"></script>
 	<script type="text/javascript" src="css/bootstrap-3.3.5/js/bootstrap.min.js" ></script>
 	<link rel="stylesheet" href="css/bootstrap-3.3.5/css/bootstrap.min.css" />
@@ -11,14 +11,14 @@
     <style>
 
     .caption2{
-    	display: inline-block;
-    	position: relative;
-    	margin: 10px;
-    	overflow: hidden;
-    	background: #FFFFFF;
-    	float: left;
-    	width: 220px;
-    	height: 300px;
+	    	display: inline-block;
+	    	position: relative;
+	    	margin: 10px;
+	    	overflow: hidden;
+	    	background: #FFFFFF;
+	    	float: left;
+	    	width: 220px;
+	    	height: 300px;
     }
     .caption2 img{
         display: block;
@@ -38,7 +38,7 @@
            -moz-transition:opacity 0.3s ease-in-out;
                 transition:opacity 0.3s ease-in-out;
     }
-    .caption2::before,.caption2::after{
+    .caption2:before,.caption2:after{
         position: absolute;
         background: #fff;
         width: 101%;
@@ -49,7 +49,7 @@
               -moz-transition:-moz-transform 0.3s ease-in-out;
                         transition:transform 0.3s ease-in-out;
     }
-    .caption2::before{
+    .caption2:before{
         content: attr(data-description);
         top: 0;
         opacity: 0.9;
@@ -63,19 +63,21 @@
         -moz-transform: translateY(-100%);
         transform: translateY(-100%);
     }
-    .caption2::after{
-        content: '了解更多';
+    .caption2:after{
+        content: attr(data-more);
         opacity: 0.9;
         top: 58%;
         background: #00B8EE;
         text-align: center;
         font-size: 22px;
+        z-index: 100;
         padding-top: 50px;
         -webkit-transform: translateY(100%);
         -moz-transform: translateY(100%);
         transform: translateY(100%);
     }
-    .caption2:hover::before,.caption2:hover::after{
+    
+    .caption2:hover:before,.caption2:hover:after{
         -webkit-transform: translateY(0);
         -moz-transform: translateY(0);
         transform: translateY(0);
@@ -108,6 +110,8 @@
 		background-repeat: no-repeat;
 		background-size: 100%;
 		border: 3px solid #FFFFFF;
+		overflow: hidden;
+		position: relative;
 	}
 	.itemPlat{
 		height: 187px;
@@ -119,7 +123,18 @@
 		cursor: pointer;
 		border: 3px solid #FFFFFF;
 		opacity: 0.5;
+		overflow: hidden;
 	}
+	
+	.textWenzi{
+		margin-right: 100px;
+		margin-left: 100px;
+		height: 100px;
+		background-color: #FFFFFF;
+    		text-align: center;margin-top: 200px;
+    		font-size: 26px;
+    		color: #000000;
+    }
 	
 	.tagBall {
 	    width: 500px;
@@ -220,6 +235,8 @@
     footer div div div div a:visited{text-decoration: none;color: #FFFFFF;}
     footer div div div div a:hover{text-decoration: none;color: #FFFFFF;}
     footer div div div div a:active{text-decoration: none;color: #FFFFFF;}
+    
+    
     </style>
 </head>
 <body>
@@ -229,7 +246,7 @@
 <div class="container-fluid">
 	
 	
-	<header class="row" style="clear: both;padding-top: 5px;background: url(img/backImage1.jpg) center;height: 480px;">
+	<header class="row" style="clear: both;padding-top: 5px;background: url(img/indexback.jpg) center;height: 480px;">
 		<div >
 			<div class="col-md-2" style="padding-left: 50px;">
 				<a href="index.html"><img src="img/炫捷  logo.png" height="60px;" style="margin-left: 10px;"/></a>
@@ -244,25 +261,22 @@
 				<a class="caption" href="ll.html" >
 				    <div class="menuText">流量</div>
 				</a>
-				<a class="caption" href="#" >
+				<a class="caption" href="jiayou.html" >
 				    <div class="menuText">加油卡</div>
 				</a>
-				<a class="caption" href="#" >
+				<!--<a class="caption" href="youxi.html" >
 				    <div class="menuText">游戏点卡</div>
 				</a>
-				<a class="caption" href="#" >
+				<a class="caption" href="shipin.html" >
 				    <div class="menuText">视频会员</div>
-				</a>
+				</a>-->
 				<a class="caption" href="API.html" >
 				    <div class="menuText">API文档</div>
 				</a>
 			</div>
 			<div class="col-md-3">
-				<a class="caption" href="#" >
+				<a class="caption" href="about.html" >
 				    <div class="menuText">关于我们</div>
-				</a>
-				<a class="caption" href="#" >
-				    <div class="menuText">联系我们</div>
 				</a>
 			</div>
 		</div>
@@ -271,79 +285,99 @@
 	
 	
 	<section>
-		<div class="row" style="text-align: center;width: 100%;font-size: 32px;margin-top: 30px;">主营业务</div>
+		<div class="row" style="text-align: center;width: 100%;font-size: 32px;margin-top: 30px;">
+			<p>主营业务</p>
+			<div style="border-top: 3px solid #666666;width: 60px;margin: 0 auto;"></div>
+			<span style="font-size: 16px;">移动、联通、电信，加油卡&nbsp;最优最全一手资源</span>
+		</div>
 		<div class="row" style="margin-top: 0px;">
 			<div style="width: 1200px;margin: 0 auto;">
 				<a class=" caption2" onmouseenter="bigger(this)" onmouseleave="smaller(this)"
-				    href="#" 
-				    data-description="移动、联通、电信   全国全面值">
+				    data-description="移动、联通、电信   全国全面值" data-more="了解更多">
 				    <div class="itemContent1" style="background: url(img/item1.png) center;"></div>
-				    <div class="itemContent2"></div>		    
-				    <div class="itemContent3">
+				    <div class="itemContent2"></div>	
+				    	<div class="itemContent3">
 						话费充值
 				    </div>
-				    
+				    <div style="position: absolute;width: 220px;height: 125px;z-index: 200;top: 175px;cursor: pointer;" onclick="window.location='hf.html'"></div>
 				</a>
 				
 				<a class="caption2"  onmouseenter="bigger(this)" onmouseleave="smaller(this)"
-				    href="#" 
-				    data-description="移动、联通、电信    全国流量包">
+				    data-description="移动、联通、电信    全国流量包" data-more="了解更多">
 				    <div class="itemContent1" style="background: url(img/item2.png) center;"></div>
 				    <div class="itemContent2"></div>
 				    <div class="itemContent3">
 						流量充值
 				    </div>
+				    <div style="position: absolute;width: 220px;height: 125px;z-index: 200;top: 175px;cursor: pointer;" onclick="window.location='ll.html'"></div>
 				</a>
 				
 				
 				<a class="caption2"  onmouseenter="bigger(this)" onmouseleave="smaller(this)"
-				    href="#" 
-				    data-description="支持中国石化、中国石油的加油卡充值">
+				    data-description="支持中国石化、中国石油的加油卡充值" data-more="了解更多">
 				    <div class="itemContent1" style=";background: url(img/item3.png) center;"></div>
 				    <div class="itemContent2"></div>
 				    <div class="itemContent3">
 						加油卡充值
 				    </div>
+				    <div style="position: absolute;width: 220px;height: 125px;z-index: 200;top: 175px;cursor: pointer;" onclick="window.location='jiayou.html'"></div>
 				</a>
 				
 				<a class="caption2"  onmouseenter="bigger(this)" onmouseleave="smaller(this)"
-				    href="#" 
-				    data-description="支持全网游戏点卡、Q币充值业务！">
+				    data-description="支持全网游戏点卡、Q币充值业务！" data-more="火速开发中">
 				    <div class="itemContent1" style="background: url(img/item4.png) center;"></div>
 				    <div class="itemContent2"></div>
 				    <div class="itemContent3">
 						游戏点卡充值
 				    </div>
+				    <!--<div style="position: absolute;width: 220px;height: 125px;z-index: 200;top: 175px;cursor: pointer;" onclick="window.location='youxi.html'"></div>-->
 				</a>
 				
 				<a class="caption2"  onmouseenter="bigger(this)" onmouseleave="smaller(this)"
-				    href="#" 
-				    data-description="腾讯、爱奇艺、优酷、乐视会员">
+				    data-description="腾讯、爱奇艺、优酷、乐视会员" data-more="火速开发中">
 				    <div class="itemContent1" style="background: url(img/item5.png) center;"></div>
 				    <div class="itemContent2"></div>
 				    <div class="itemContent3">
 						视频会员充值
 				    </div>
+				    <!--<div style="position: absolute;width: 220px;height: 125px;z-index: 200;top: 175px;cursor: pointer;" onclick="window.location='shipin.html'"></div>-->
 				</a>	
 			</div>
 		</div>
 	</section>
 	
 	<section>
-		<div class="row" style="text-align: center;width: 100%;font-size: 32px;margin-top: 20px;margin-bottom: 40px;">服务方式</div>
-		<div id="showPlat" class="row" style="position: relative;border-radius: 8px;width: 1210px;margin: 0 auto;">
-			<div class="itemPlat_Big" style="background: url(img/app-1.jpg);background-size: 100%;" onclick="showThis(this)"></div>
-			<div class="itemPlat" style="background: url(img/dn.jpg);background-size: 100%;" onclick="showThis(this)"></div>
-			<div class="itemPlat" style="background: url(img/md.jpg);background-size: 100%;" onclick="showThis(this)"></div>
-			<div class="itemPlat" style="background: url(img/wx.jpg);background-size: 100%;" onclick="showThis(this)"></div>
+		<div class="row" style="text-align: center;width: 100%;font-size: 32px;margin-top: 20px;margin-bottom: 40px;">
+			<p>服务方式</p>
+			<div style="border-top: 3px solid #666666;width: 60px;margin: 0 auto;"></div>
+			<span style="font-size: 16px;">为客户创造更多价值</span>
+		</div>
+		<div id="showPlat" class="row" style="position: relative;border-radius: 8px;width: 1210px;margin: 0 auto;">			
+			<div class="itemPlat_Big" style="background: url(img/1111.png);background-size: 100%;" onclick="showThis(this)">
+				
+			</div>
+			<div class="itemPlat" style="background: url(img/2222.png);background-size: 100%;" onclick="showThis(this)">
+				
+			</div>
+			<div class="itemPlat" style="background: url(img/3333.png);background-size: 100%;" onclick="showThis(this)">
+				
+			</div>
+			<div class="itemPlat" style="background: url(img/4444.png);background-size: 100%;" onclick="showThis(this)">
+				
+			</div>
+			
 			<div style="z-index: 1000;background: url(img/top.png) no-repeat;width: 57px;height: 29px;position: absolute;right: 135px;top: 2px;transform:rotate(0deg);cursor: pointer;" onclick="next()"></div>
-			<div style="z-index: 1000;background: url(img/top.png) no-repeat;width: 57px;height: 29px;position: absolute;right: 135px;top: 529px;transform:rotate(180deg);cursor: pointer;" onclick="next()"></div>
+			<div id="nextImage" style="z-index: 1000;background: url(img/top.png) no-repeat;width: 57px;height: 29px;position: absolute;right: 135px;top: 529px;transform:rotate(180deg);cursor: pointer;" onclick="next()"></div>
 		</div>
 	</section>
 	
 	
 	<section>
-		<div class="row" style="text-align: center;width: 100%;font-size: 32px;margin-top: 60px;margin-bottom: 40px;">合作流程</div>
+		<div class="row" style="text-align: center;width: 100%;font-size: 32px;margin-top: 60px;margin-bottom: 40px;">
+			<p>合作流程</p>
+			<div style="border-top: 3px solid #666666;width: 60px;margin: 0 auto;"></div>
+			<span style="font-size: 16px;">简单、快速、高效</span>
+		</div>
 		<div class="row" style="position: relative;border-radius: 8px;width: 1210px;margin: 0 auto;margin-bottom: 100px;">
 			<div class="liucheng">
 				<img class="liuchengimage" src="img/liucheng1.png" />
@@ -391,7 +425,11 @@
 	
 	
 	<section>
-		<div class="row" style="text-align: center;width: 100%;font-size: 32px;margin-top: 60px;margin-bottom: 40px;">合作伙伴</div>
+		<div class="row" style="text-align: center;width: 100%;font-size: 32px;margin-top: 60px;margin-bottom: 40px;">
+			<p>合作伙伴</p>
+			<div style="border-top: 3px solid #666666;width: 60px;margin: 0 auto;"></div>
+			<span style="font-size: 16px;">创新与共赢</span>
+		</div>
 		<div class="row" style="position: relative;border-radius: 8px;width: 1210px;margin: 0 auto;margin-bottom: 100px;">
 			<div class="huoban">
 				<img src="img/huoban/caifutong.jpg" />
@@ -445,7 +483,7 @@
 				<img src="img/huoban/zhifubao.jpg" />
 			</div>
 			<div class="huoban">
-				<img src="img/huoban/yidong_2.jpg" />
+				<img src="img/huoban/yidong.jpg" />
 			</div>
 			
 		</div>
@@ -460,7 +498,7 @@
 					<div style="margin-top: 20px;">济南炫捷信息技术有限公司</div>
 					<div style="margin-top: 20px;"><a href="mailto:xuanjie@jiefupay.com">邮箱：xuanjie@jiefupay.com</a></div>
 					<div style="margin-top: 20px;">地址：济南市历下区解放东路 中宏广场D座 1216</div>
-					<div style="margin-top: 20px;">工信部备案编号：鲁ICP备16001477号</div>
+					<div style="margin-top: 20px;font-size: 16px;line-height: 30px;">工信部备案编号：<img src="img/ghs.png" />鲁ICP备16001477号</div>
 				</div>
 				<div class="col-md-4" style="padding-left: 70px;">
 					<div style="margin-top: 20px;font-size: 24px;font-weight: bold;">主营业务</div>
@@ -489,6 +527,7 @@
 
 </div>
 	<script>
+		
 		function totop(){
 			$("body").animate({scrollTop: '0px'}, 800);
 		}
@@ -518,6 +557,11 @@
 			var firstDiv = $("#showPlat").children()[3];
 			$(firstDiv).click();
 		}
+		function clickNextImage(){
+			$("#nextImage").click();
+		}
+		window.setInterval(clickNextImage,5000)   
+		
 	</script>
 </body>
 
